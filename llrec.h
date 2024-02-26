@@ -3,7 +3,8 @@
 #ifndef NULL
 #define NULL 0
 #endif
-
+ #include <iostream>
+ using namespace std;
 /**
  * Node struct for both problems
  */
@@ -80,11 +81,26 @@ Node* llfilter(Node* head, Comp pred);
 template <typename Comp>
 Node* llfilter(Node* head, Comp pred)
 {
-    //*********************************************
-    // Provide your implementation below
-    //*********************************************
-
-
+  //base case
+  if(head == nullptr){
+    return nullptr;
+  }
+  //head recursion to last nodes
+  Node* tempList = llfilter(head->next, pred);
+  cout << "Current node: " << head->val << endl;
+  //if node's value satisfies condition for removal
+  if(pred(head->val)){
+    cout << "Removing value: " << head->val << " from list." << endl;
+    //deallocate node that should be removed
+    Node* temp = head;
+    delete temp;
+    //return the node(s) that were kept
+    return tempList;
+  } else {
+    //link node to keep to existing kept nodes
+    head->next = tempList;
+    return head;
+  }
 }
 
 #endif
