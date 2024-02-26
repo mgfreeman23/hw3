@@ -3,8 +3,6 @@
 #ifndef NULL
 #define NULL 0
 #endif
- #include <iostream>
- using namespace std;
 /**
  * Node struct for both problems
  */
@@ -87,10 +85,8 @@ Node* llfilter(Node* head, Comp pred)
   }
   //head recursion to last nodes
   Node* tempList = llfilter(head->next, pred);
-  cout << "Current node: " << head->val << endl;
   //if node's value satisfies condition for removal
   if(pred(head->val)){
-    cout << "Removing value: " << head->val << " from list." << endl;
     //deallocate node that should be removed
     Node* temp = head;
     delete temp;
